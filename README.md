@@ -23,6 +23,7 @@ El proyecto incluye autenticación con **JWT**, roles de usuario (admin, restaur
 ## 🗂️ Estructura del proyecto (MVC)
 Esta organización implementa **MVC (Model–View–Controller)** y separa responsabilidades.
 
+```text
 📦 delivr-api/
 ├── 📄 package.json
 ├── 📄 .env.example
@@ -30,50 +31,53 @@ Esta organización implementa **MVC (Model–View–Controller)** y separa respo
 ├── 📄 README.md
 │
 ├── 📁 src/
-│ ├── 📄 app.js
-│ ├── 📄 server.js
-│ │
-│ ├── 📁 config/
-│ │ ├── 📄 database.cjs # Configuración de Sequelize (CommonJS)
-│ │
-│ ├── 📁 controllers/
-│ │ ├── 📄 auth.controller.js
-│ │ ├── 📄 restaurants.controller.js
-│ │ ├── 📄 products.controller.js
-│ │ ├── 📄 orders.controller.js
-│ │ └── 📄 assignments.controller.js
-│ │
-│ ├── 📁 routes/
-│ │ ├── 📄 auth.routes.js
-│ │ ├── 📄 restaurants.routes.js
-│ │ ├── 📄 products.routes.js
-│ │ ├── 📄 orders.routes.js
-│ │ └── 📄 index.routes.js # Une todas las rutas
-│ │
-│ ├── 📁 middlewares/
-│ │ ├── 📄 authJwt.js # Middleware JWT + roles
-│ │ ├── 📄 validateRequest.js # Validaciones
-│ │ └── 📄 errorHandler.js # Manejo global de errores
-│ │
-│ ├── 📁 db/
-│ │ └── 📁 models/
-│ │ ├── 📄 index.js # Configura Sequelize y relaciones
-│ │ ├── 📄 user.js
-│ │ ├── 📄 restaurant.js
-│ │ ├── 📄 product.js
-│ │ ├── 📄 order.js
-│ │ ├── 📄 orderItem.js
-│ │ └── 📄 assignment.js
-│ │
-│ ├── 📁 scripts/
-│ │ ├── 📄 db-sync.js # Sincroniza modelos con DB
-│ │ └── 📄 test-db.js # Prueba conexión a PostgreSQL
-│ │
-│ ├── 📁 utils/
-│ │ └── 📄 csv.js # Exportación de datos a CSV
+│   ├── 📄 app.js
+│   ├── 📄 server.js
+│   │
+│   ├── 📁 config/
+│   │   └── 📄 database.cjs        # Configuración de Sequelize (CommonJS)
+│   │
+│   ├── 📁 controllers/
+│   │   ├── 📄 auth.controller.js
+│   │   ├── 📄 restaurants.controller.js
+│   │   ├── 📄 products.controller.js
+│   │   ├── 📄 orders.controller.js
+│   │   └── 📄 assignments.controller.js
+│   │
+│   ├── 📁 routes/
+│   │   ├── 📄 auth.routes.js
+│   │   ├── 📄 restaurants.routes.js
+│   │   ├── 📄 products.routes.js
+│   │   ├── 📄 orders.routes.js
+│   │   └── 📄 index.routes.js      # Une todas las rutas
+│   │
+│   ├── 📁 middlewares/
+│   │   ├── 📄 authJwt.js           # Middleware JWT + roles
+│   │   ├── 📄 validateRequest.js   # Validaciones
+│   │   └── 📄 errorHandler.js      # Manejo global de errores
+│   │
+│   ├── 📁 db/
+│   │   └── 📁 models/
+│   │        ├── 📄 index.js        # Configura Sequelize y relaciones
+│   │        ├── 📄 user.js
+│   │        ├── 📄 restaurant.js
+│   │        ├── 📄 product.js
+│   │        ├── 📄 order.js
+│   │        ├── 📄 orderItem.js
+│   │        └── 📄 assignment.js
+│   │
+│   ├── 📁 scripts/
+│   │   ├── 📄 db-sync.js           # Sincroniza modelos con DB
+│   │   └── 📄 test-db.js           # Prueba conexión a PostgreSQL
+│   │
+│   ├── 📁 utils/
+│   │   └── 📄 csv.js               # Exportación de datos a CSV
+│   │
+│   └── (otros archivos opcionales)
 │
 └── 📁 tests/
-└── 📄 health.test.js # Test de /api/health
+    └── 📄 health.test.js           # Test de /api/health
+
 
 ## ⚙️ Instalación y configuración
 
