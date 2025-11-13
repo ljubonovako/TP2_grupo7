@@ -1,0 +1,37 @@
+meta {
+  name: registrar pedido
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{base_url}}/api/orders
+  body: json
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: {{token_customer}}
+}
+
+body:json {
+  {
+    "items": [
+      { "productId": 1, "qty": 2 }
+    ]
+  }
+  
+}
+
+tests {
+  var data = res.getBody();
+  bru.setEnvVar("id_pedido",data.id)
+}
+
+settings {
+  encodeUrl: true
+}

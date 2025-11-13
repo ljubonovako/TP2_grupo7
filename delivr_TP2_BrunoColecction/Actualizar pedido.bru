@@ -1,0 +1,29 @@
+meta {
+  name: Actualizar pedido
+  type: http
+  seq: 10
+}
+
+put {
+  url: {{base_url}}/api/orders/{{id_pedido}}/status
+  body: json
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: {{token_restaurant}}
+}
+
+body:json {
+  {
+    "status": "preparing"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

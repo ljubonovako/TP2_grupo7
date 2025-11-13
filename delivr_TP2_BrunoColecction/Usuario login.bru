@@ -1,0 +1,51 @@
+meta {
+  name: Usuario login
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{base_url}}/api/auth/login
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "email": "juan@demo.com",
+    "password": "Juan1234"
+  }
+  
+}
+
+tests {
+  // Guarda el token JWT del login en el entorno actual
+  var data = res.getBody();
+  if (data.token) {
+    const userRole = data.user?.role || "unknown";
+  
+    if (userRole === "admin") {
+      bru.setEnvVar("token_admin", data.token);
+      console.log("✅ Token de admin guardado en el entorno");
+    } else if (userRole === "restaurant") {
+      bru.setEnvVar("token_restaurant", data.token);
+      console.log("✅ Token de restaurant guardado en el entorno");
+    } else if (userRole === "customer") {
+      bru.setEnvVar("token_customer", data.token);
+      console.log("✅ Token de customer guardado en el entorno");
+    } else {
+      console.log("⚠️ Usuario sin rol reconocido, no se guardó token");
+    }
+  } else {
+    console.log("❌ No se recibió token en la respuesta del login");
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+}

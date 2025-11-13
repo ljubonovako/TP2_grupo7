@@ -1,0 +1,32 @@
+meta {
+  name: registrar productos
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{base_url}}/api/products
+  body: json
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: {{token_restaurant}}
+}
+
+body:json {
+  {
+    "name": "Pizza Muzza",
+    "price": 5000,
+    "restaurantId": 1
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+}

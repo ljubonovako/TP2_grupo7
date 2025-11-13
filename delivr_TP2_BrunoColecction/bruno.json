@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "delivr_TP2",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
