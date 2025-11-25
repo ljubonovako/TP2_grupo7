@@ -1,4 +1,5 @@
 import { models } from '../db/models/index.js';
+import { exportOrdersToCsv } from '../utils/csv.js';
 
 export async function createOrder(req, res, next) {
   try {
@@ -30,4 +31,36 @@ export async function updateStatus(req, res, next) {
     await order.save();
     res.json(order);
   } catch (e) { next(e); }
+}
+
+export async function exportOrders(req, res, next) {
+  try {
+    const orders = await models.Order.findAll({
+      include: [
+        {
+          model: models.User,
+          as: 'customer',
+          attributes: ['email']
+        }
+      ],
+      order: [['createdAt', 'DESC']]
+    });
+
+    const rows = orders.map(o => ({
+      id: o.id,
+      status: o.status,
+      total: o.total,
+      customerEmail: o.customer?.email || '',
+      createdAt: o.createdAt.toISOString()
+    }));
+
+    const filePath = await exportOrdersToCsv(rows);
+
+    return res.status(200).json({
+      message: 'Archivo CSV generado correctamente',
+      file: filePath
+    });
+  } catch (err) {
+    next(err);
+  }
 }
